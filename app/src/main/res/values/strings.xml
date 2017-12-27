@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">WheelSurfDemo</string>
+    <string-array name="names">
+        <item>王 者 皮 肤</item>
+        <item>1 8 0 积 分</item>
+        <item>L O L 皮 肤</item>
+        <item>谢 谢 参 与</item>
+        <item>2 8 积 分</item>
+        <item>微 信 红 包</item>
+        <item>5 Q 币</item>
+    </string-array>
+
+    <string-array name="icons">
+        <item>iphone</item>
+        <item>iphone</item>
+        <item>iphone</item>
+        <item>iphone</item>
+        <item>iphone</item>
+        <item>iphone</item>
+        <item>iphone</item>
+    </string-array>
+
+    <string-array name="colors">
+        <item>#fef9f7</item>
+        <item>#fbc6a9</item>
+        <item>#ffdecc</item>
+        <item>#fbc6a9</item>
+        <item>#ffdecc</item>
+        <item>#fbc6a9</item>
+        <item>#ffdecc</item>
+    </string-array>
 </resources>

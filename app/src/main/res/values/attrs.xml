@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="wheelSurfView">
+        <!--类型 根据类型来加载资源 1 默认类型 用户需要提供文字和图片 2 暴力模式 用户只需要提供一张圆形的用来旋转的图片-->
+        <attr name="type" format="integer"/>
+        <!--最低圈数 默认值3 也就是说每次旋转都会最少转3圈-->
+        <attr name="minTimes" format="integer"/>
+        <!--扇形的数量 也就是奖品的份数-->
+        <attr name="typenum" format="integer"/>
+        <!--每一个扇形旋转消耗的时间-->
+        <attr name="vartime" format="integer"/>
+        <!--类型为1的时候 需要提供每个扇形上面的文字描述 长度必须和typenum一致-->
+        <attr name="deses" format="reference"/>
+        <!--类型为1的时候 需要提供每个扇形上面的图片展示 长度必须和typenum一致-->
+        <attr name="icons" format="reference"/>
+        <!--类型为1的时候 需要提供每个扇形背景颜色 长度必须和typenum一致-->
+        <attr name="colors" format="reference"/>
+        <!--中间图片的引用 有默认值 不填则使用默认值-->
+        <attr name="goImg" format="reference"/>
+        <!--圆环的图片引用 有默认值 不填则使用默认值-->
+        <attr name="huanImg" format="reference"/>
+        <!--如果类型为2 此值必填-->
+        <attr name="mainImg" format="reference"/>
+        <!--文字大小-->
+        <attr name="textSize" format="dimension"/>
+        <!--文字颜色-->
+        <attr name="textColor" format="reference|color"/>
+    </declare-styleable>
+</resources>
