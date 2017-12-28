@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:wheelSurfView="http://schemas.android.com/apk/res-auto"
@@ -7,21 +7,62 @@
     android:layout_height="match_parent"
     tools:context="com.cretin.www.wheelsurfdemo.MainActivity">
 
-    <com.cretin.www.wheelsurfdemo.view.WheelSurfView
-        android:id="@+id/wheelSurfView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        wheelSurfView:colors="@array/colors"
-        wheelSurfView:deses="@array/names"
-        wheelSurfView:icons="@array/icons"
-        wheelSurfView:minTimes="3"
-        wheelSurfView:textSize="18sp"
-        wheelSurfView:type="1"
-        wheelSurfView:typenum="7"
-        wheelSurfView:vartime="75">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    </com.cretin.www.wheelsurfdemo.view.WheelSurfView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="自定义模式"
+            android:textStyle="bold"/>
 
+        <!--自定义方式-->
+        <com.cretin.www.wheelsruflibrary.view.WheelSurfView
+            android:id="@+id/wheelSurfView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            wheelSurfView:colors="@array/colors"
+            wheelSurfView:deses="@array/names"
+            wheelSurfView:goImg="@mipmap/node"
+            wheelSurfView:huanImg="@mipmap/yuanhuan"
+            wheelSurfView:icons="@array/icons"
+            wheelSurfView:minTimes="3"
+            wheelSurfView:textColor="#FF0000"
+            wheelSurfView:textSize="16sp"
+            wheelSurfView:type="1"
+            wheelSurfView:typenum="7"
+            wheelSurfView:vartime="75">
 
-</RelativeLayout>
+        </com.cretin.www.wheelsruflibrary.view.WheelSurfView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="暴力模式-只配置底盘"
+            android:textStyle="bold"/>
+        <!--暴力方式-->
+        <com.cretin.www.wheelsruflibrary.view.WheelSurfView
+            android:id="@+id/wheelSurfView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            wheelSurfView:mainImg="@mipmap/all"
+            wheelSurfView:minTimes="3"
+            wheelSurfView:type="2"
+            wheelSurfView:typenum="7"
+            wheelSurfView:vartime="75">
+
+        </com.cretin.www.wheelsruflibrary.view.WheelSurfView>
+
+    </LinearLayout>
+
+</ScrollView>
