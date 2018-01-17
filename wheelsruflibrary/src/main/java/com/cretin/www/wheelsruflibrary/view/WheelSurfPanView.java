@@ -3,6 +3,7 @@ package com.cretin.www.wheelsruflibrary.view;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,6 +17,7 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.cretin.www.wheelsruflibrary.R;
@@ -243,6 +245,16 @@ public class WheelSurfPanView extends View {
                 //将动画的过程态回调给调用者
                 if ( rotateListener != null )
                     rotateListener.rotating(animation);
+            }
+        });
+        final float[] f = {0};
+        anim.setInterpolator(new TimeInterpolator() {
+            @Override
+            public float getInterpolation(float t) {
+                float f1 = ( float ) (Math.cos((t + 1) * Math.PI) / 2.0f) + 0.5f;
+                Log.e("HHHHHHHh", "" + t + "     " + (f[0] - f1));
+                f[0] = ( float ) (Math.cos((t + 1) * Math.PI) / 2.0f) + 0.5f;
+                return f[0];
             }
         });
         anim.addListener(new AnimatorListenerAdapter() {
