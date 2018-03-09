@@ -34,7 +34,6 @@
             wheelSurfView:icons="@array/icons"
             wheelSurfView:minTimes="3"
             wheelSurfView:textColor="#FF0000"
-            wheelSurfView:textSize="16sp"
             wheelSurfView:type="1"
             wheelSurfView:typenum="7"
             wheelSurfView:vartime="75">
@@ -60,6 +59,24 @@
             wheelSurfView:type="2"
             wheelSurfView:typenum="7"
             wheelSurfView:vartime="75">
+
+        </com.cretin.www.wheelsruflibrary.view.WheelSurfView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="用户通过代码来设置这些属性"
+            android:textStyle="bold"/>
+
+        <com.cretin.www.wheelsruflibrary.view.WheelSurfView
+            android:id="@+id/wheelSurfView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            wheelSurfView:typenum="-1"
+            android:layout_margin="20dp">
 
         </com.cretin.www.wheelsruflibrary.view.WheelSurfView>
 

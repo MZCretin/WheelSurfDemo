@@ -3,6 +3,8 @@ package com.cretin.www.wheelsruflibrary.view;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -13,6 +15,9 @@ import android.widget.RelativeLayout;
 
 import com.cretin.www.wheelsruflibrary.R;
 import com.cretin.www.wheelsruflibrary.listener.RotateListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by cretin on 2017/12/26.
@@ -90,9 +95,36 @@ public class WheelSurfView extends RelativeLayout {
             @Override
             public void onClick(View v) {
                 //调用此方法是将主动权交个调用者 由调用者调用开始旋转的方法
-                rotateListener.rotateBefore(( ImageView ) v);
+                if ( rotateListener != null )
+                    rotateListener.rotateBefore(( ImageView ) v);
             }
         });
+    }
+
+    public void setConfig(Builder builder) {
+        if ( builder.mColors != null )
+            mWheelSurfPanView.setmColors(builder.mColors);
+        if ( builder.mDeses != null )
+            mWheelSurfPanView.setmDeses(builder.mDeses);
+        if ( builder.mHuanImgRes != 0 )
+            mWheelSurfPanView.setmHuanImgRes(builder.mHuanImgRes);
+        if ( builder.mIcons != null )
+            mWheelSurfPanView.setmIcons(builder.mIcons);
+        if ( builder.mMainImgRes != 0 )
+            mWheelSurfPanView.setmMainImgRes(builder.mMainImgRes);
+        if ( builder.mMinTimes != 0 )
+            mWheelSurfPanView.setmMinTimes(builder.mMinTimes);
+        if ( builder.mTextColor != 0 )
+            mWheelSurfPanView.setmTextColor(builder.mTextColor);
+        if ( builder.mTextSize != 0 )
+            mWheelSurfPanView.setmTextSize(builder.mTextSize);
+        if ( builder.mType != 0 )
+            mWheelSurfPanView.setmType(builder.mType);
+        if ( builder.mVarTime != 0 )
+            mWheelSurfPanView.setmVarTime(builder.mVarTime);
+        if ( builder.mTypeNum != 0 )
+            mWheelSurfPanView.setmTypeNum(builder.mTypeNum);
+        mWheelSurfPanView.show();
     }
 
     /**
@@ -147,4 +179,119 @@ public class WheelSurfView extends RelativeLayout {
 
     //记录当前是否是第一次回调onMeasure
     private boolean isFirst = true;
+
+
+    //建造者模式
+    public static final class Builder {
+        //当前类型 1 自定义模式 2 暴力模式
+        private int mType = 0;
+        //最低圈数 默认值3 也就是说每次旋转都会最少转3圈
+        private int mMinTimes = 0;
+        //分类数量 如果数量为负数  通过代码设置样式
+        private int mTypeNum = 0;
+        //每个扇形旋转的时间
+        private int mVarTime = 0;
+        //文字描述集合
+        private String[] mDeses;
+        //自定义图标集合
+        private List<Bitmap> mIcons;
+        //背景颜色
+        private Integer[] mColors;
+        //整个旋转图的背景 只有类型为2时才需要
+        private Integer mMainImgRes = 0;
+        //GO图标
+        private Integer mGoImgRes = 0;
+        //圆环的图片引用
+        private Integer mHuanImgRes = 0;
+        //文字大小
+        private float mTextSize = 0;
+        //文字颜色
+        private int mTextColor = 0;
+
+        public final WheelSurfView.Builder setmType(int mType) {
+            this.mType = mType;
+            return this;
+        }
+
+        public final WheelSurfView.Builder setmTypeNum(int mTypeNum) {
+            this.mTypeNum = mTypeNum;
+            return this;
+        }
+
+        public final WheelSurfView.Builder setmGoImgRes(int mGoImgRes) {
+            this.mGoImgRes = mGoImgRes;
+            return this;
+        }
+
+        public final WheelSurfView.Builder setmMinTimes(int mMinTimes) {
+            this.mMinTimes = mMinTimes;
+            return this;
+        }
+
+        public final WheelSurfView.Builder setmVarTime(int mVarTime) {
+            this.mVarTime = mVarTime;
+            return this;
+        }
+
+        public final WheelSurfView.Builder setmDeses(String[] mDeses) {
+            this.mDeses = mDeses;
+            return this;
+        }
+
+        public final WheelSurfView.Builder setmIcons(List<Bitmap> mIcons) {
+            this.mIcons = mIcons;
+            return this;
+        }
+
+        public final WheelSurfView.Builder setmColors(Integer[] mColors) {
+            this.mColors = mColors;
+            return this;
+        }
+
+        public final WheelSurfView.Builder setmMainImgRes(Integer mMainImgRes) {
+            this.mMainImgRes = mMainImgRes;
+            return this;
+        }
+
+        public final WheelSurfView.Builder setmHuanImgRes(Integer mHuanImgRes) {
+            this.mHuanImgRes = mHuanImgRes;
+            return this;
+        }
+
+        public final WheelSurfView.Builder setmTextSize(float mTextSize) {
+            this.mTextSize = mTextSize;
+            return this;
+        }
+
+        public final WheelSurfView.Builder setmTextColor(int mTextColor) {
+            this.mTextColor = mTextColor;
+            return this;
+        }
+
+        public final Builder build() {
+            return this;
+        }
+    }
+
+    //旋转图片
+    public static List<Bitmap> rotateBitmaps(List<Bitmap> source) {
+        float mAngle = ( float ) (360.0 / source.size());
+        List<Bitmap> result = new ArrayList<>();
+        for ( int i = 0; i < source.size(); i++ ) {
+            Bitmap bitmap = source.get(i);
+            int ww = bitmap.getWidth();
+            int hh = bitmap.getHeight();
+            // 定义矩阵对象
+            Matrix matrix = new Matrix();
+            // 缩放原图
+            matrix.postScale(1f, 1f);
+            // 向左旋转45度，参数为正则向右旋转
+            matrix.postRotate(mAngle * i);
+            //bmp.getWidth(), 500分别表示重绘后的位图宽高
+            Bitmap dstbmp = Bitmap.createBitmap(bitmap, 0, 0, ww, hh,
+                    matrix, true);
+            result.add(dstbmp);
+        }
+        return result;
+    }
 }
